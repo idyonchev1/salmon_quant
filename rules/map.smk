@@ -3,12 +3,12 @@ rule salmon_quant_reads:
     output:"data/salmon/{sample}/quant.sf"
     log:
         "logs/salmon/{sample}.log"
-    threads: 8
+    threads: 12
     conda:
         "salmon"
     resources:
-        mem_mb=2000,
+        mem_mb=4000,
         time="24:00:00"
     shell:
-        "salmon quant -i salmon_index/transcripts_index -l A -1 {input[0]} -2 {input[1]} -o data/salmon/{wildcards.sample} &> {log}"
+        "salmon quant -i salmon_index/transcripts_index -l A -1 {input[0]} -2 {input[1]} -p 12 -o data/salmon/{wildcards.sample} &> {log}"
 
