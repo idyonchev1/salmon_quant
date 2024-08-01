@@ -24,8 +24,6 @@ rule fastqc:
         ["data/trimmed/trimmed_{sample}.1.fastq", "data/trimmed/trimmed_{sample}.2.fastq"]
     output:
         ["data/fastqc/trimmed_{sample}.1_fastqc.html","data/fastqc/trimmed_{sample}.2_fastqc.html"]
-#    conda:
-#        "../envs/qc.yml"
     log:
         "logs/fastqc/{sample}.log"
     params:
@@ -60,8 +58,6 @@ rule multiqc:
         expand("data/fastqc/trimmed_{sample}.fastq_screen.txt", sample=SAMPLES),
     output:
         "data/multiqc/multiqc_report.html"
-#    conda:
-#        "../envs/qc.yml"
     resources:
         mem_mb=2000,
         time="24:00:00"
