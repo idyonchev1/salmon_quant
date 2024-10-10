@@ -11,8 +11,8 @@ rule map_star:
         shell:
             """
             ulimit -n 65535
-            STAR --runThreadN {threads} --genomeDir star_index --readFilesIn {input[0]} {input[1]} --outSAMtype BAM SortedByCoordinate --outFileNamePrefix "data/star/{wildcards.sample}_ &> {log}"
-            samtools index {output} 2>> {log}
+            STAR --runThreadN {threads} --genomeDir star_index --readFilesIn {input[0]} {input[1]} --outSAMtype BAM SortedByCoordinate --outFileNamePrefix "data/star/{wildcards.sample}_" &> {log}
+            samtools index {output.bam} 2>> {log}
             """
 
 rule deduplicate:
